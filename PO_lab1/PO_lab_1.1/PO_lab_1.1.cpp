@@ -6,8 +6,8 @@ using std::chrono::duration_cast;
 using std::chrono::duration;
 using std::chrono::high_resolution_clock;
 
-const int rows = 10;
-const int columns = 10;
+const int rows = 1000;
+const int columns = 100;
 
 void function(int arr[rows][columns])
 {
@@ -42,9 +42,9 @@ int main()
     for(int i = 0; i < rows; i++) {
         for (int j = 0; j < columns; j++){
             arr[i][j] = rand() % 100;
-            std::cout << arr[i][j] << "\t";
+            //std::cout << arr[i][j] << "\t";
         }
-        std::cout << "\n";
+        //std::cout << "\n";
     }
 
     function(arr);
