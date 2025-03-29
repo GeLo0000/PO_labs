@@ -6,8 +6,8 @@ using std::chrono::nanoseconds;
 using std::chrono::duration_cast;
 using std::chrono::high_resolution_clock;
 
-const int rows = 10;
-const int columns = 10;
+const int rows = 192;
+const int columns = 100;
 
 
 void function(int arr[rows][columns], int row_start, int row_num, int* max, int* min)
@@ -33,7 +33,7 @@ void function(int arr[rows][columns], int row_start, int row_num, int* max, int*
 int main()
 {
     srand(time(NULL));
-    int n = 100;
+    int n = 100000;
     int arr[rows][columns];
     for (int i = 0; i < rows; i++) {
         for (int j = 0; j < columns; j++) {
@@ -46,7 +46,7 @@ int main()
 
     auto payload_begin = high_resolution_clock::now();
 
-    const int thread_num = 2;
+    const int thread_num = 1;
     int row_per_thread = rows / thread_num;
 
     std::thread threads[thread_num];
@@ -83,6 +83,7 @@ int main()
 
 
     auto elapsed = duration_cast<nanoseconds>(payload_end - payload_begin);
+    std::cout << "Num threads = " << thread_num << std::endl;
     printf("\nPayload time = %.9f seconds \n", (elapsed.count() * 1e-9));
     std::cout << "Payload time = " << elapsed.count() << " nanoseconds" << std::endl;
 
