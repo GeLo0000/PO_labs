@@ -16,8 +16,8 @@ public:
     void stop();
     void pause();
     void resume();
-    void add_task(int thread_id, std::atomic<bool>& stop_generators);
-    void Notify_all_cv_not_full();
+    bool add_task(int thread_id);
+    void print_average_wait_times();
 
 private:
     void worker_loop(int thread_id);
@@ -32,4 +32,6 @@ private:
     std::atomic<bool> m_paused;
     int m_num_threads;
     std::atomic<int> m_task_id_counter;
+    std::vector<std::vector<double>> m_wait_times;
+    std::mutex m_wait_times_mutex;
 };

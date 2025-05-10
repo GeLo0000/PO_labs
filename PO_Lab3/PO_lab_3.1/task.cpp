@@ -12,7 +12,7 @@ task::task() {
 }
 
 task::~task(){
-	//std::cout << "Destroying task with id: " << get_id() << std::endl;
+	
 }
 
 int task::get_id() const{

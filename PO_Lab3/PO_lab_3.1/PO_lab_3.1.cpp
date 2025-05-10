@@ -7,10 +7,12 @@
 #include <ctime>
 
 std::atomic<bool> stop_generators = false;
+std::atomic<int> reject_tasks = 0;
 
 void start_generators(thread_pool& worker, int num_generator, int time) {
     while (!stop_generators.load()) {
-        worker.add_task(num_generator, stop_generators);
+        if (!worker.add_task(num_generator)) reject_tasks++;
+
         std::this_thread::sleep_for(std::chrono::milliseconds(time));
     }
 }
@@ -45,7 +47,6 @@ int main() {
     
     std::cout << "\n[Main] Stopping all...\n";
     stop_generators = true;
-    worker.Notify_all_cv_not_full();
 
     for (auto& t : generator_threads) {
         if (t.joinable())
@@ -54,6 +55,15 @@ int main() {
 
     worker.stop();
     std::cout << "\n[Main] Finish all...\n";
+
+    std::cout << "\n[Stats] Number of Threads: \n";
+    std::cout << "Threads for workers:"<< num_workers <<"\n";
+    std::cout << "Threads for generators:" << num_generators << "\n";
+
+    worker.print_average_wait_times();
+
+     std::cout << "\n[Stats] Number of Reject Tasks: " << reject_tasks << "\n";
+ 
 
     return 0;
 }
