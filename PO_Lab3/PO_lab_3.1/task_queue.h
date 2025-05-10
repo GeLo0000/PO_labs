@@ -21,12 +21,6 @@ public:
 	bool pop(task& save_task);
 	bool emplace(int id, int time);
 
-public:
-	//task_queue(const task_queue& other) = delete;
-	//task_queue(task_queue&& other) = delete;
-	//task_queue& operator=(const task_queue& rhs) = delete;
-	//task_queue& operator=(task_queue&& rhs) = delete;
-
 private:
 	mutable read_write_lock m_rw_lock;
 	std::queue<task> m_tasks;

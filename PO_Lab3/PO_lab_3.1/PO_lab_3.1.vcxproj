@@ -127,8 +127,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="generator_tasks.cpp" />
-    <ClCompile Include="generator_tasks.h" />
     <ClCompile Include="PO_lab_3.1.cpp" />
     <ClCompile Include="task.cpp" />
     <ClCompile Include="task_queue.cpp" />

@@ -27,12 +27,6 @@
     <ClCompile Include="task.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="generator_tasks.h">
-      <Filter>Header Files</Filter>
-    </ClCompile>
-    <ClCompile Include="generator_tasks.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="task_queue.h">
